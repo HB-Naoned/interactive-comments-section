@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Rubik";
+    src:
+     url("../../asset/font/rubik/Rubik-Regular.ttf") format("ttf"),
+     url("../../asset/font/rubik/Rubik-Regular.woff") format("woff"),
+     url("../../asset/font/rubik/Rubik-Regular.woff2") format("woff2"),
+  }
+  
+
+$font-family-base: "Rubik" !default;
+
+  
+$theme-colors: (
+    "primary": #0d6efd,
+    "secondary": #6c757d,
+    "success": #70dfab,
+    "info": #8ee6f8,
+    "warning": #ffc107,
+    "danger": #dc3545,
+    "light": #f8f9fa,
+    "dark": #212529,
+  
+
+    // Primary
+    "moderate-blue":hsl(238, 40%, 52%),
+    "soft-red":hsl(358, 79%, 66%),
+    "light-grayish-blue":hsl(239, 57%, 85%),
+    "pale-red":hsl(357, 100%, 86%),
+
+
+    // Neutral
+    "dark-blue":hsl(212, 24%, 26%),
+    "grayish-blue":hsl(211, 10%, 45%),
+    "light-gray":hsl(223, 19%, 93%),
+    "very-light-gray":hsl(228, 33%, 97%),
+    "white":hsl(0, 0%, 100%),
+    );
+   
+
+  
+  @import "./../asset/bootstrap-5.0.2/scss/bootstrap.scss";

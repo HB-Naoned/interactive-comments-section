@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive comments section</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">  
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
 
-  <!-- Pull dynamic content from the data.json file -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+        <!-- Angular -->
+        <script src="asset/angularjs-1.8.2/angular.min.js"></script>
+        <script src="asset/angularjs-1.8.2/angular-route.min.js"></script>
+        <script src="asset/angularjs-1.8.2/angular-resource.min.js"></script>
+        <script src="asset/angularjs-1.8.2/angular-animate.min.js"></script>    
+        <script src="asset/angularjs-1.8.2/angular-sanitize.min.js"></script>  
+
+        <!-- AngularJS module -->
+        <script src="js/module/app.js"></script>        
+        
+        <!-- AngularJS controller -->
+        <script src="js/controller/index.js"></script>     
+        
+        <!-- AngularJS directive -->
+
+
+
+
+        <!-- Bootstrap5 bundle -->
+        <script src="asset/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="css/css/style.css">   
+
+
+
+        <title>Interactive comments section by HB-Naoned</title>
+
+    </head>
+
+
+    <body ng-app = "myApp">
+        <div ng-controller = "index" >
+           <h2>Welcome {{helloTo.title}} to the world of Tutorialspoint!</h2>
+        </div>
+            
+        <!-- Pull dynamic content from the data.json file -->
+        <select class="form-select">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+     </body>
 </html>
