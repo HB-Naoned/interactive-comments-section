@@ -15,6 +15,9 @@ app.controller("index", ['$scope','$http','$controller', function($scope,$http,$
     }else{
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         console.log(dataJSON)
+
+        $scope.jsonEx = localStorage.getItem("dataJSON")
+        // Modifier attribut
         // console.log(dataJSON.data.currentUser.username)
         // dataJSON.data.currentUser.username = "Helori"
         // localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
@@ -23,42 +26,30 @@ app.controller("index", ['$scope','$http','$controller', function($scope,$http,$
     
         
         
-        //Year 
-        $scope.exampleDate = moment("20210511", "YYYYMMDD").fromNow();
-        console.log($scope.exampleDate)     
         
+        $scope.exampleDate = moment().hour(8).minute(0).second(0).toDate();
 
-        //mount
-        $scope.exampleDate = moment("20220311", "YYYYMMDD").fromNow();
-        console.log($scope.exampleDate)     
+
+        //Charger createdAt
+        dataJSON.data.comments[0].createdAt = moment(dataJSON.data.comments[0].date, "DD.MM.YYYY HH:mm:ss").fromNow()
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         
-        //Day
-        $scope.exampleDate = moment("20220508", "YYYYMMDD").fromNow();
-        console.log($scope.exampleDate) 
-
-        //hour 
-        $scope.w = moment("073501", "Hmmss").fromNow()   
-        console.log($scope.w)
-
-
-        //min 
-        $scope.w= moment("093501", "Hmmss").fromNow()   
-        console.log($scope.w)
-        
-        //sec
-        $scope.w = moment("093901", "Hmmss").fromNow()   
-        console.log($scope.w)
-
-
-
-
     
+        //Création date
+        // dataJSON.data.comments[0].createdAt = moment().format("DD.MM.YYYY HH:mm:ss")
+
+
+        $scope.getDate = function(){
+            console.log("ici")
+            console.log(moment(dataJSON.data.comments[0].date, "DD.MM.YYYY HH:mm:ss").fromNow())
+            var d1 = document.getElementById('1');
+            d1.insertAdjacentHTML('afterend', '<div id="two">two</div>');
+        };
+
+
 
     }
         
     
-
-
-
     
 }]);

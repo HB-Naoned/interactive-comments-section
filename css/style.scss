@@ -1,4 +1,10 @@
-@font-face {
+  @import "./../asset/bootstrap-5.1.3/scss/functions";
+  @import "./../asset/bootstrap-5.1.3/scss/variables";
+  @import "./../asset/bootstrap-5.1.3/scss/utilities";
+    
+  
+  
+    @font-face {
     font-family: "Rubik";
     src:
      url("../../asset/font/rubik/Rubik-Regular.ttf") format("ttf"),
@@ -36,6 +42,32 @@ $theme-colors: (
     "white":hsl(0, 0%, 100%),
     );
    
+      
+    $grid-breakpoints: (
+      xs: 0,
+      sm: 375px,
+      md: 768px,
+      lg: 992px,
+      xl: 1200px,
+      xxl: 1400px
+    );
+    
+    $utilities: map-merge(
+      $utilities,
+      (
+        "width": map-merge(
+          map-get($utilities, "width"),
+          (
+            values: map-merge(
+              map-get(map-get($utilities, "width"), "values"),
+              (10: 10%, 30: 30%, 40: 40%, 60: 60%),
+            ),
+          ),
+        ),
+      )
+    );
 
-  
-  @import "./../asset/bootstrap-5.0.2/scss/bootstrap.scss";
+
+
+
+    @import "./../asset/bootstrap-5.1.3/scss/bootstrap.scss";
