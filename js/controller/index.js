@@ -1,12 +1,55 @@
 app.controller("index", ['$scope','$http','$controller', function($scope,$http,$controller) {   
     
-    $scope.helloTo = {};
-    $scope.helloTo.title = "AngularJS";
 
 
 
 
 
+    //---------------------Sizing responsive-------------------------------
+    if(window.screen.width > 500){
+            $scope.mobileDesign = false
+    }else{
+            $scope.mobileDesign = true
+    }
+
+    window.onresize = function(){
+        // console.log(window.screen.height)
+        // console.log(window.screen.width)
+        if(window.screen.width > 500){
+            $scope.$apply(function(){
+                $scope.mobileDesign = false
+            })
+        }else{
+            $scope.$apply(function(){
+                $scope.mobileDesign = true
+            })
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //-----------------------LocalStorage----------------------------------
     if(window.localStorage.length === 0){
         $http.get('data.json').then((dataJSON) => {
             console.log(dataJSON)
@@ -26,6 +69,27 @@ app.controller("index", ['$scope','$http','$controller', function($scope,$http,$
     
         
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //-----------------------MomentJS----------------------------------
         
         $scope.exampleDate = moment().hour(8).minute(0).second(0).toDate();
 

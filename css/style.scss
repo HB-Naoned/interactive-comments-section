@@ -1,21 +1,20 @@
-  @import "./../asset/bootstrap-5.1.3/scss/functions";
-  @import "./../asset/bootstrap-5.1.3/scss/variables";
-  @import "./../asset/bootstrap-5.1.3/scss/utilities";
+@import "./../asset/bootstrap-5.1.3/scss/functions";
+@import "./../asset/bootstrap-5.1.3/scss/variables";
+@import "./../asset/bootstrap-5.1.3/scss/utilities";
     
   
-  
     @font-face {
-    font-family: "Rubik";
-    src:
-     url("../../asset/font/rubik/Rubik-Regular.ttf") format("ttf"),
-     url("../../asset/font/rubik/Rubik-Regular.woff") format("woff"),
-     url("../../asset/font/rubik/Rubik-Regular.woff2") format("woff2"),
-  }
+        font-family: "Rubik";
+        src:
+            url("../../asset/font/rubik/Rubik-Regular.ttf") format("ttf"),
+            url("../../asset/font/rubik/Rubik-Regular.woff") format("woff"),
+        url("../../asset/font/rubik/Rubik-Regular.woff2") format("woff2"),
+    }
   
 
 $font-family-base: "Rubik" !default;
 
-  
+
 $theme-colors: (
     "primary": #0d6efd,
     "secondary": #6c757d,
@@ -26,7 +25,6 @@ $theme-colors: (
     "light": #f8f9fa,
     "dark": #212529,
   
-
     // Primary
     "moderate-blue":hsl(238, 40%, 52%),
     "soft-red":hsl(358, 79%, 66%),
@@ -40,42 +38,61 @@ $theme-colors: (
     "light-gray":hsl(223, 19%, 93%),
     "very-light-gray":hsl(228, 33%, 97%),
     "white":hsl(0, 0%, 100%),
-    );
+);
    
       
-    $grid-breakpoints: (
+$grid-breakpoints: (
       xs: 0,
-      sm: 375px,
+      sm: 500px,
       md: 768px,
       lg: 992px,
       xl: 1200px,
       xxl: 1400px
-    );
+);
     
-    $utilities: map-merge(
-      $utilities,
+$utilities: map-merge(
+  $utilities,
+  (
+    "width": map-merge(
+      map-get($utilities, "width"),
       (
-        "width": map-merge(
-          map-get($utilities, "width"),
-          (
-            values: map-merge(
-              map-get(map-get($utilities, "width"), "values"),
-              (10: 10%, 30: 30%, 40: 40%, 60: 60%),
-            ),
-          ),
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (10: 10%, 30: 30%, 40: 40%, 60: 60%),
         ),
-      )
-    );
+      ),
+    ),
+    )
+);
 
+    
+    $font-size-base: 1rem;
+    $h6-font-size: $font-size-base * 0.7;
 
-  @each $color, $value in $theme-colors {
-    .bg-#{$color}{
-          background-color: $value !important;
+    @each $color, $value in $theme-colors {
+      .bg-#{$color}{
+            background-color: $value !important;
+      }
+
+      .text-#{$color}{
+        color: $value !important;
+      }
     }
 
-    .text-#{$color}{
-      color: $value !important;
-    }
+
+  .btn-light-gray:hover {
+    color: #000;
+    background-color: #dadee6 !important;
+    border-color: #dee4f0 !important;
   }
 
-    @import "./../asset/bootstrap-5.1.3/scss/bootstrap.scss";
+
+  .btn-very-light-gray:hover {
+    color: #000;
+    background-color: #f0f0f3 !important;
+    border-color: #eaeaee !important;
+  }
+
+  
+
+  @import "./../asset/bootstrap-5.1.3/scss/bootstrap.scss";
