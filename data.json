@@ -39,8 +39,8 @@
         {
           "id": 3,
           "content": "If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.",
-          "createdAt": "11.05.2021 09:57:10",
-          "date" : "",
+          "createdAt": "1 weeks ago",
+          "date" : "11.05.2021 09:57:10",
           "score": 4,
           "replyingTo": "maxblagun",
           "user": {
