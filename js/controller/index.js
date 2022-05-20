@@ -4,15 +4,7 @@ app.controller("index", ['$scope','$http','$controller', '$compile', function($s
 
     //---------------------Sizing responsive-------------------------------
     window.onresize = function(){
-        if(window.screen.width > 500){
-            $scope.$apply(function(){
-                $scope.mobileDesign = false
-            })
-        }else{
-            $scope.$apply(function(){
-                $scope.mobileDesign = true
-            })
-        }
+        window.screen.width > 500 ? $scope.$apply(function(){ $scope.mobileDesign = false }) : $scope.$apply(function(){$scope.mobileDesign = true} );
     }
 
 
