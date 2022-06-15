@@ -25,7 +25,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         dataJSON.data.comments.forEach(function(comment){
             if(comment.id == id){
                 var myObjToAdd = {
-                    "id": 4,
+                    "id": $scope.idMax + 1,
                     "content": $scope.contentComment,
                     "createdAt" : moment().format("DD.MM.YYYY HH:mm:ss"),
                     "score": 0,
@@ -41,6 +41,33 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         $scope.initComment()
     }
 
+
+    $scope.deleteCommennt = function($e){
+        var id = $e.target.parentElement.parentElement.parentElement.parentElement.id;
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+
+        for(let commentNumber in dataJSON.data.comments){
+            if(dataJSON.data.comments[commentNumber].id == id){
+                delete dataJSON.data.comments.splice(commentNumber,1)
+                break
+            }
+            if(dataJSON.data.comments[commentNumber].replies.length != 0){
+                for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
+                    if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
+                        delete dataJSON.data.comments[commentNumber].replies.splice(underCommentNumber,1)
+                        break
+                    }   
+                }
+            }
+        }
+
+        console.log(dataJSON)
+        console.log(id)
+
+        //Update LocalStorage
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
+        $scope.initComment()
+    }
 
 
 
