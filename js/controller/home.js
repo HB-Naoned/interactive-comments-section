@@ -100,7 +100,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                         `+comment.user.username+`
                                                     </div>
                                                     <div class="col-5 col-sm-5 d-flex justify-content-end">
-                                                        `+comment.createdAt+`
+                                                        `+moment(comment.createdAt, "DD.MM.YYYY HH:mm:ss").fromNow()+`
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-soft-red">
@@ -162,7 +162,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                         `+underComment.user.username+`
                                                     </div>
                                                     <div class="col-4 col-sm-4 col-md-5 d-flex justify-content-end">
-                                                        `+underComment.createdAt+`
+                                                        `+moment(underComment.createdAt, "DD.MM.YYYY HH:mm:ss").fromNow()+`
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-soft-red">
@@ -216,42 +216,5 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
         angular.element(document.getElementById("app")).append(bodyHTML);
     } 
 
-
-
-
-    
-
-    
-
-
-
-
-
-
-
-    //     //-----------------------MomentJS----------------------------------
-        
-    //     $scope.exampleDate = moment().hour(8).minute(0).second(0).toDate();
-
-
-    //     //Charger createdAt
-    //     dataJSON.data.comments[0].createdAt = moment(dataJSON.data.comments[0].date, "DD.MM.YYYY HH:mm:ss").fromNow()
-    //     localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
-        
-    
-    //     //Création date
-    //     // dataJSON.data.comments[0].createdAt = moment().format("DD.MM.YYYY HH:mm:ss")
-
-
-    //     $scope.getDate = function(){
-    //         console.log("ici")
-    //         console.log(moment(dataJSON.data.comments[0].date, "DD.MM.YYYY HH:mm:ss").fromNow())
-    //         var d1 = document.getElementById('1');
-    //         d1.insertAdjacentHTML('afterend', '<div id="two">two</div>');
-    //     };
-
-
-
-    // }
         
 }]);

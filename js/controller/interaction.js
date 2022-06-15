@@ -38,10 +38,6 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
-
-        //Format fr des heures
-
-
         $scope.initComment()
     }
 
