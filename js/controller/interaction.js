@@ -25,7 +25,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         dataJSON.data.comments.forEach(function(comment){
             if(comment.id == id){
                 var myObjToAdd = {
-                    "id": 19,
+                    "id": 4,
                     "content": $scope.contentComment,
                     "createdAt" : moment().format("DD.MM.YYYY HH:mm:ss"),
                     "score": 0,
@@ -36,12 +36,13 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             }
         })
 
-        console.log(dataJSON)
+        //Update LocalStorage
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
 
-        //A continuer pour ajouter dans JSON localS
+        //Format fr des heures
 
-        document.getElementById("response").remove();
-        $scope.autorisationReplyView = false;
+
+        $scope.initComment()
     }
 
 

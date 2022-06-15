@@ -70,9 +70,22 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                         </div>
                                     </div>`
         $scope.idMax = 0
-        $scope.autorisationReplyView = false;
+        $scope.autorisationReplyView = false
         $scope.currentUser = dataJSON.data.currentUser
-        window.screen.width > 500 ? $scope.mobileDesign = false : $scope.mobileDesign = true;
+        window.screen.width > 500 ? $scope.mobileDesign = false : $scope.mobileDesign = true
+
+
+        //Empty content of Body 
+        let rst = document.getElementById("app")
+        let child = rst.lastChild; 
+        while (child) {
+            console.log("child")
+            rst.removeChild(child);
+            child = rst.lastChild;
+            console.log(child)
+        }
+
+        //Generat HTML
         let bodyHTML = ""
         dataJSON.data.comments.forEach(function(comment){
             $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
