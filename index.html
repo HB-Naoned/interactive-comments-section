@@ -16,8 +16,12 @@
         <script src="js/module/app.js"></script>        
         
         <!-- AngularJS controller -->
-        <script src="js/controller/index.js"></script>  
+        <script src="js/controller/home.js"></script>  
+        <script src="js/controller/interaction.js"></script>  
         
+        <!-- AngularJS factorie -->
+        <!-- <script src="js/factorie/home.js"></script>   -->
+
         <!-- MomentJS -->
         <script src="asset/moment/moment.js"></script>
         <script src="asset/moment/local/fr.js"></script>
@@ -30,11 +34,7 @@
     </head>
 
 
-    <body ng-app="myApp" class="container-sm h-auto bg-light-gray py-5 px-4" ng-controller="index" ng-init="initComment()"  id="app">
-        <!-- <body ng-app="myApp" class="container-sm h-auto bg-light-gray py-5 px-4" ng-controller="index" ng-init="initComment()" ng-bind-html="expression" id="app"> -->
-        
-        <!-- {{mobileDesign}} -->
-        <!-- {{autorisationReplyView}} Ne s'affiche pas à false -->
-        <!-- {{idMax}} -->
+    <body ng-app="myApp" class="container-sm h-auto bg-light-gray py-5 px-4" ng-controller="home" ng-init="initComment()"  id="app">
+
     </body>
 </html>
