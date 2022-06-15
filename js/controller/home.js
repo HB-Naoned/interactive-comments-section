@@ -48,12 +48,12 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                     <div class="col-3 col-sm-2 col-lg-1">
                                         <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-60" alt="plus">
                                     </div>
-                                    <div class="col-6 col-sm-8 col-lg-10">
+                                    <div class="col-5 col-sm-7 col-lg-9">
                                         <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
                                     </div>
-                                    <div class="col-3 col-sm-2 col-lg-1 d-flex align-content-between ">
-                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="submitReplyView($event,true)">Reply</button>
-                                        <button type="button" class="btn btn-sm btn-soft-red fw-bold" ng-click="">Dell</button> 
+                                    <div class="row col-4 col-sm-3 col-lg-2 d-flex justify-content-evenly">
+                                        <button type="button" class="btn btn-soft-red fw-bold my-1" ng-click="">Dell</button> 
+                                        <button type="button" class="btn btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,true)">Reply</button>
                                     </div>
                                 </div>`
 
@@ -61,12 +61,12 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                         <div class="col-3 col-sm-2 col-lg-1">
                                             <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-50" alt="plus">
                                         </div>
-                                        <div class="col-6 col-sm-8 col-lg-10">
+                                        <div class="col-5 col-sm-7 col-lg-9">
                                             <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
                                         </div>
-                                        <div class="col-3 col-sm-2 col-lg-1 align-content-between ">
-                                            <button type="button" class="btn btn-sm btn-moderate-blue fw-bold" ng-click="submitReplyView($event,false)">Reply</button> 
-                                            <button type="button" class="btn btn-sm btn-soft-red fw-bold" ng-click="">Dell</button> 
+                                        <div class="row col-4 col-sm-3 col-lg-2">
+                                            <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" ng-click="">Dell</button> 
+                                            <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,false)">Reply</button> 
                                         </div>
                                     </div>`
         $scope.idMax = 0
@@ -91,9 +91,13 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-soft-red">
-                                                        <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2" >Dell</button>
+                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                            Dell
+                                                        </button>
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
-                                                        <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2">Reply</button>
+                                                            <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                            Reply
+                                                        </button>
                                                     </div>
                                                     <div class="col-12 mt-1">
                                                         <p class="w-100 fs-6">`+comment.content+`</p>
@@ -115,8 +119,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     </div>
                                                     <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">
                                                         <button type="button" class="btn btn-sm btn-very-light-gray fw-bold text-soft-red">
-                                                        <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2">Dell</button>
-                                                        <button type="button" class="btn btn-sm btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
+                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                            Dell
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-very-light-gray fw-bold text-moderate-blue mx-1 mb-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
                                                             <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2">Reply
                                                         </button>
                                                     </div>
@@ -128,7 +134,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                             <!-- Start under comment -->
                                             <div class="col-2 d-flex">
                                                 <!-- vertical line -->
-                                                <div class="vr m-2 mb-3 position-relative top-0 start-50">
+                                                <div class="vr m-1 mb-3 position-relative top-0 start-50">
                                             </div>
                                         </div>
                                         <div class="col-10">`
@@ -139,19 +145,19 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     <div class="row d-flex align-items-center"><div class="col-3 col-sm-3 col-md-3">
                                                         <img src="`+underComment.user.image.png+`" class="img-fluid" alt="plus">
                                                     </div>
-                                                    <div class="col-5 col-sm-4 col-md-4 fw-bold">
+                                                    <div class="col-5 col-sm-5 col-md-4 fw-bold">
                                                         `+underComment.user.username+`
                                                     </div>
-                                                    <div class="col-4 col-sm-5 col-md-5 d-flex justify-content-end">
+                                                    <div class="col-4 col-sm-4 col-md-5 d-flex justify-content-end">
                                                         `+underComment.createdAt+`
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-soft-red">
-                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2">
+                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                             Dell
                                                         </button>
                                                         <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
-                                                            <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2">
+                                                            <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                             Reply
                                                         </button>
                                                     </div>
@@ -177,11 +183,11 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     </div>
                                                     <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">
                                                         <button type="button" class="btn btn-sm btn-very-light-gray fw-bold text-soft-red">
-                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2">
+                                                            <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                             Dell
                                                         </button>
                                                         <button type="button" class="btn btn-sm btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
-                                                            <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 fw-bold">
+                                                            <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1 fw-bold">
                                                             Reply
                                                         </button>
                                                     </div>

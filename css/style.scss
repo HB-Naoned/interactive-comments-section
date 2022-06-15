@@ -66,18 +66,18 @@ $utilities: map-merge(
 );
 
     
-    $font-size-base: 1rem;
-    $h6-font-size: $font-size-base * 0.7;
+$font-size-base: 1rem;
+$h6-font-size: $font-size-base * 0.7;
 
-    @each $color, $value in $theme-colors {
-      .bg-#{$color}{
-            background-color: $value !important;
-      }
+@each $color, $value in $theme-colors {
+.bg-#{$color}{
+    background-color: $value !important;
+  }
 
-      .text-#{$color}{
-        color: $value !important;
-      }
-    }
+  .text-#{$color}{
+    color: $value !important;
+  }
+}
 
 
   .btn-light-gray:hover {
@@ -93,6 +93,9 @@ $utilities: map-merge(
     border-color: #eaeaee !important;
   }
 
+  .btn-soft-red {
+    color: #fff !important;
+  }
   
 
   @import "./../asset/bootstrap-5.1.3/scss/bootstrap.scss";
