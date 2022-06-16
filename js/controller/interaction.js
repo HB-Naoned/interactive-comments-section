@@ -10,7 +10,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         }
         angular.element(document.getElementById($e.target.parentElement.parentElement.parentElement.parentElement.id)).after(html);
         $scope.autorisationReplyView = true;
-        $scope.contentComment = "";
+        $scope.contentComment = null;
     };
 
 
@@ -42,7 +42,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
     }
 
 
-    $scope.deleteCommennt = function($e){
+    $scope.deleteComment = function($e){
         var id = $e.target.parentElement.parentElement.parentElement.parentElement.id;
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
 
@@ -70,8 +70,44 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
     }
 
 
+    $scope.newComment = function($e){
+        var comment = {
+                        "id": $scope.idMax + 1,
+                        "content": $scope.contentComment,
+                        "createdAt": moment().format("DD.MM.YYYY HH:mm:ss"),
+                        "score": 0,
+                        "user": {
+                            "image": { 
+                                "png": "./images/avatars/image-juliusomo.png",
+                                "webp": "./images/avatars/image-juliusomo.webp"
+                            },
+                            "username": "juliusomo"
+                        },
+                        "replies": []
+        }
+        console.log(comment)
+        console.log($e.target.parentElement.parentElement)
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+        dataJSON.data.comments.push(comment)
 
+        //Update LocalStorage
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
+        $scope.contentComment = null;
+        $scope.initComment() 
+    }
 
+    $scope.modifyScore = function($e,$boolTypeModify){
+        var id = $e.target.parentElement.parentElement.parentElement.parentElement.id
+        console.log(id)
+        
+        if($boolTypeModify){
+
+        }else{
+
+        }
+
+        
+    }
 
 
 
