@@ -107,7 +107,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1"   ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
                                                                 <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>
@@ -121,13 +121,13 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     <div class="row">
                                                         <div class="col-5 col-sm-12 bg-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
                                                             <button type="button" class="btn btn-sm btn-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)">
-                                                                <img src="./images/icon-plus.svg" class="" alt="plus">
+                                                                <img ng-src="./images/icon-plus.svg" alt="plus">
                                                             </button>
                                                             <div class="text-moderate-blue fw-bold ">
                                                                 `+comment.score+`
                                                             </div>
                                                             <button type="button" class="btn btn-sm btn-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)">
-                                                                <img src="./images/icon-minus.svg" class="" alt="minus">
+                                                                <img src="./images/icon-minus.svg" alt="minus">
                                                             </button> 
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">
@@ -169,7 +169,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1"   ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-very-light-gray fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
                                                                 <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>
@@ -185,13 +185,13 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     <div class="row row-cols-sm-1">
                                                         <div class="col-5 bg-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
                                                             <button type="button" class="btn btn-sm btn-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)">
-                                                                <img src="./images/icon-plus.svg" class="" alt="plus">
+                                                                <img src="./images/icon-plus.svg" alt="plus">
                                                             </button> 
                                                             <div class="text-moderate-blue fw-bold">
                                                                 `+underComment.score+`
                                                             </div>
                                                             <button type="button" class="btn btn-sm btn-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)">
-                                                                <img src="./images/icon-minus.svg" class="" alt="minus">
+                                                                <img src="./images/icon-minus.svg" alt="minus">
                                                             </button>
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">

@@ -15,6 +15,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
+    
     $scope.submitReplyView = function($e,$boolTypeReply){
         if($boolTypeReply){
             var id = $e.target.parentElement.parentElement.parentElement.children[0].id;
@@ -40,6 +41,8 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()
     }
+
+
 
 
     $scope.deleteComment = function($e){
@@ -70,6 +73,9 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
     }
 
 
+
+
+
     $scope.newComment = function($e){
         var comment = {
                         "id": $scope.idMax + 1,
@@ -96,17 +102,33 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         $scope.initComment() 
     }
 
+
+
+
+
     $scope.modifyScore = function($e,$boolTypeModify){
-        var id = $e.target.parentElement.parentElement.parentElement.parentElement.id
-        console.log(id)
-        
-        if($boolTypeModify){
+        var score = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.children[1].innerText) : parseInt($e.target.parentElement.children[1].innerText))  
+        var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id)) 
+        score = $boolTypeModify ? score+1 : score-1
 
-        }else{
-
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+        for(let commentNumber in dataJSON.data.comments){
+            if(dataJSON.data.comments[commentNumber].id == id){
+                dataJSON.data.comments[commentNumber].score = score
+                break
+            }
+            if(dataJSON.data.comments[commentNumber].replies.length != 0){
+                for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
+                    if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
+                        dataJSON.data.comments[commentNumber].replies[underCommentNumber].score = score
+                        break
+                    }   
+                }
+            }
         }
-
-        
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
+        console.log(dataJSON)
+        $scope.initComment()      
     }
 
 
