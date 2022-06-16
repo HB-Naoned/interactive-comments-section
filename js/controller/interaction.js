@@ -8,14 +8,15 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         }else{
             var html = $compile($scope.commentUnderReply)($scope);
         }
-        angular.element(document.getElementById($e.target.parentElement.parentElement.parentElement.parentElement.id)).after(html);
+        var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
+        angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
         $scope.contentComment = null;
     };
 
 
 
-    
+
     $scope.submitReplyView = function($e,$boolTypeReply){
         if($boolTypeReply){
             var id = $e.target.parentElement.parentElement.parentElement.children[0].id;
@@ -44,9 +45,14 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
+    $scope.deleteReplyview = function(){
+        $scope.initComment()
+    }
+
+
 
     $scope.deleteComment = function($e){
-        var id = $e.target.parentElement.parentElement.parentElement.parentElement.id;
+        var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id)) 
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
 
         for(let commentNumber in dataJSON.data.comments){

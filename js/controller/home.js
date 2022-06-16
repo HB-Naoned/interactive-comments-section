@@ -64,7 +64,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                             <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
                                         </div>
                                         <div class="row col-4 col-sm-3 col-lg-2 d-flex justify-content-evenly">
-                                            <button type="button" class="btn btn-soft-red fw-bold my-1" ng-click="">Dell</button> 
+                                            <button type="button" class="btn btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
                                             <button type="button" class="btn btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,true)" ng-disabled="contentComment == null">Reply</button>
                                         </div>
                                     </div>`
@@ -77,7 +77,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                 <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
                                             </div>
                                             <div class="row col-4 col-sm-3 col-lg-2">
-                                                <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" ng-click="">Dell</button> 
+                                                <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
                                                 <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,false)" ng-disabled="contentComment == null">Reply</button> 
                                             </div>
                                         </div>`
@@ -221,7 +221,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                         <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
                                     </div>
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentComment == null">Reply</button>
+                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentComment == null">Send</button>
                                     </div>
                                 </div>`
         bodyHTML = $compile(bodyHTML)($scope);
