@@ -9,6 +9,9 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             var html = $compile($scope.commentUnderReply)($scope);
         }
         var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
+
+        $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
+        
         angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
         $scope.contentComment = null;
@@ -28,15 +31,16 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             if(comment.id == id){
                 var myObjToAdd = {
                     "id": $scope.idMax + 1,
-                    "content": $scope.contentComment,
+                    "content": "@" + $scope.replyingTo + " " + $scope.contentComment,
                     "createdAt" : moment().format("DD.MM.YYYY HH:mm:ss"),
                     "score": 0,
-                    "replyingTo": comment.user.username,
+                    "replyingTo": $scope.replyingTo,
                     "user": $scope.currentUser
                 }
                 comment.replies.push(myObjToAdd)
             }
         })
+        $scope.replyingTo = ""
 
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
@@ -70,9 +74,6 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             }
         }
 
-        console.log(dataJSON)
-        console.log(id)
-
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()
@@ -85,7 +86,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
     $scope.newComment = function($e){
         var comment = {
                         "id": $scope.idMax + 1,
-                        "content": $scope.contentComment,
+                        "content": $scope.contentMainComment,
                         "createdAt": moment().format("DD.MM.YYYY HH:mm:ss"),
                         "score": 0,
                         "user": {
@@ -97,14 +98,12 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                         },
                         "replies": []
         }
-        console.log(comment)
-        console.log($e.target.parentElement.parentElement)
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         dataJSON.data.comments.push(comment)
 
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
-        $scope.contentComment = null;
+        $scope.contentMainComment = null;
         $scope.initComment() 
     }
 
@@ -133,7 +132,6 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             }
         }
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
-        console.log(dataJSON)
         $scope.initComment()      
     }
 

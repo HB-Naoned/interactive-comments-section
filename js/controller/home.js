@@ -218,10 +218,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                         <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-60" alt="plus">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
-                                        <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
+                                        <textarea class="h-100 w-100" ng-model="contentMainComment"></textarea>
                                     </div>
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentComment == null">Send</button>
+                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentMainComment == null">Send</button>
                                     </div>
                                 </div>`
         bodyHTML = $compile(bodyHTML)($scope);
