@@ -2,6 +2,9 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
+
+
+
     $scope.askReplyView = function($e,$boolTypeReply){
         if($boolTypeReply){
             var html = $compile($scope.commentReply)($scope);
@@ -21,11 +24,14 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
     $scope.submitReplyView = function($e,$boolTypeReply){
+        console.log($boolTypeReply)
         if($boolTypeReply){
             var id = $e.target.parentElement.parentElement.parentElement.children[0].id;
         }else{
             var id = $e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].id;
+            console.log($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].id)
         }
+        console.log(id)
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         dataJSON.data.comments.forEach(function(comment){
             if(comment.id == id){
@@ -37,11 +43,15 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                     "replyingTo": $scope.replyingTo,
                     "user": $scope.currentUser
                 }
-                comment.replies.push(myObjToAdd)
+                // console.log(myObjToAdd)
+                // console.log(comment.replies)
+                // comment.replies.push(myObjToAdd)
+                // console.log(comment.replies)
+                // //Good 
             }
         })
+        console.log(dataJSON)
         $scope.replyingTo = ""
-
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()
