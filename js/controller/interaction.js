@@ -17,7 +17,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         
         angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
-        $scope.contentComment = "@" + $scope.replyingTo + " ";
+        $scope.contentComment = "";
     };
 
 
@@ -43,11 +43,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                     "replyingTo": $scope.replyingTo,
                     "user": $scope.currentUser
                 }
-                // console.log(myObjToAdd)
-                // console.log(comment.replies)
-                // comment.replies.push(myObjToAdd)
-                // console.log(comment.replies)
-                // //Good 
+                comment.replies.push(myObjToAdd)
             }
         })
         console.log(dataJSON)

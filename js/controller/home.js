@@ -207,7 +207,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                         +`</div>
                                                         <div class="col-12 mt-1">
                                                             <p class="w-100">
-                                                                `+underComment.content+`
+                                                                <strong class="text-moderate-blue">@`+underComment.replyingTo+`</strong> `+underComment.content+`
                                                             </p>
                                                         </div> 
                                                     </div>
