@@ -12,9 +12,16 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             var html = $compile($scope.commentUnderReply)($scope);
         }
         var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
-
-        $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
         
+        
+        if($scope.mobileDesign){
+            $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText : $e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText)
+            console.log($scope.replyingTo)
+        }else{
+            $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
+            
+            console.log($scope.replyingTo)
+        }
         angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
         $scope.contentComment = "";
@@ -43,6 +50,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                     "replyingTo": $scope.replyingTo,
                     "user": $scope.currentUser
                 }
+                console.log($scope.replyingTo)
                 comment.replies.push(myObjToAdd)
             }
         })

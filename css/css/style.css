@@ -139,10 +139,10 @@
   color: white !important;
 }
 
-.btn-light-gray:hover {
+.btn-white:hover {
   color: #000;
-  background-color: #dadee6 !important;
-  border-color: #dee4f0 !important;
+  background-color: #edeff3 !important;
+  border-color: #e8ecf5 !important;
 }
 
 .btn-very-light-gray:hover {
