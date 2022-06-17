@@ -57,9 +57,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
 
         //Case if there is comment
         if(dataJSON.data.comments.length != 0){
+            $scope.currentUser = dataJSON.data.currentUser
             $scope.commentReply =`  <div class="row d-flex bg-very-light-gray rounded-3 mt-4 p-3 px-4">
                                         <div class="col-3 col-sm-2 col-lg-1">
-                                            <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-60" alt="plus">
+                                            <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="plus">
                                         </div>
                                         <div class="col-5 col-sm-7 col-lg-9">
                                             <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
@@ -72,7 +73,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
 
             $scope.commentUnderReply =` <div class="row d-flex bg-very-light-gray rounded-3 mt-1 mb-3 p-3 px-4">
                                             <div class="col-3 col-sm-2 col-lg-1">
-                                                <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-50" alt="plus">
+                                                <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-50" alt="plus">
                                             </div>
                                             <div class="col-5 col-sm-7 col-lg-9">
                                                 <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
@@ -84,8 +85,6 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                         </div>`
             $scope.idMax = 0
             $scope.autorisationReplyView = false
-            $scope.currentUser = dataJSON.data.currentUser
-            console.log($scope.currentUser.username)
             window.screen.width > 500 ? $scope.mobileDesign = false : $scope.mobileDesign = true
 
             //Generat HTML
@@ -247,7 +246,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
         }
         bodyHTML = bodyHTML + ` <div class="row d-flex bg-very-light-gray rounded-3 mt-4 p-3 px-4">
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <img src="./images/avatars/image-amyrobson.png" class="img-fluid w-60" alt="plus">
+                                        <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="plus">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
                                         <textarea class="h-100 w-100" ng-model="contentMainComment"></textarea>

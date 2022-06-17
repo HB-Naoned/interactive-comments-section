@@ -17,7 +17,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         
         angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
-        $scope.contentComment = null;
+        $scope.contentComment = "@" + $scope.replyingTo + " ";
     };
 
 
@@ -37,7 +37,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             if(comment.id == id){
                 var myObjToAdd = {
                     "id": $scope.idMax + 1,
-                    "content": "@" + $scope.replyingTo + " " + $scope.contentComment,
+                    "content": $scope.contentComment,
                     "createdAt" : moment().format("DD.MM.YYYY HH:mm:ss"),
                     "score": 0,
                     "replyingTo": $scope.replyingTo,
