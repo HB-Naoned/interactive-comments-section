@@ -48,12 +48,16 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
 
         //Empty content of Body 
         let rst = document.getElementById("app")
-        let child = rst.lastChild; 
+        let child = rst.lastChild 
         while (child) {
-            rst.removeChild(child);
-            child = rst.lastChild;
+            rst.removeChild(child)
+            child = rst.lastChild
         }
 
+        //Sort of main comment
+        dataJSON.data.comments.sort(function(a,b){
+            return b.score - a.score
+        })
 
         //Case if there is comment
         if(dataJSON.data.comments.length != 0){
