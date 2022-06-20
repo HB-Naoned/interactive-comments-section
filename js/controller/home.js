@@ -76,7 +76,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         </div>
                                         <div class="row col-4 col-sm-3 col-lg-2 d-flex justify-content-evenly">
                                             <button type="button" class="btn btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
-                                            <button type="button" class="btn btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,true)" ng-disabled="contentComment == null">Reply</button>
+                                            <button type="button" class="btn btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,true)" ng-disabled="contentComment == ''">Reply</button>
                                         </div>
                                     </div>`
 
@@ -89,7 +89,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                             </div>
                                             <div class="row col-4 col-sm-3 col-lg-2">
                                                 <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
-                                                <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,false)" ng-disabled="contentComment == null">Reply</button> 
+                                                <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,false)" ng-disabled="contentComment =='' ">Reply</button> 
                                             </div>
                                         </div>`
             $scope.idMax = 0
@@ -126,7 +126,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                     <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Dell
                                                                 </button>
-                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="" ng-disabled="autorisationReplyView">
+                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
                                                                     <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Edit
                                                                 </button>`
@@ -162,7 +162,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
@@ -213,7 +213,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
@@ -221,7 +221,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             :
 
                                                             `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
-                                                                <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 
@@ -254,7 +254,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
@@ -262,7 +262,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             :
 
                                                             `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
-                                                                <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 

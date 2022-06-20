@@ -12,15 +12,12 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
             var html = $compile($scope.commentUnderReply)($scope);
         }
         var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
-        
+
         
         if($scope.mobileDesign){
             $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText : $e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText)
-            console.log($scope.replyingTo)
         }else{
             $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
-            
-            console.log($scope.replyingTo)
         }
         angular.element(document.getElementById(id)).after(html);
         $scope.autorisationReplyView = true;
@@ -56,6 +53,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         })
         console.log(dataJSON)
         $scope.replyingTo = ""
+
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()
@@ -67,6 +65,21 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         $scope.initComment()
     }
 
+
+
+    $scope.editComment = function($e){
+        var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
+        console.log(id)
+        
+        // if($scope.mobileDesign){
+        //     $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText : $e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText)
+        //     console.log($scope.replyingTo)
+        // }else{
+        //     $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
+            
+        //     console.log($scope.replyingTo)
+        // }
+    }
 
 
     $scope.deleteComment = function($e){
@@ -148,6 +161,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()      
     }
+
 
 
 
