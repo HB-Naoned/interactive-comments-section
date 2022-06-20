@@ -1,9 +1,8 @@
-app.controller("home", ['$scope','$http','$controller', '$compile', function($scope,$http,$controller,$compile) {   
+app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'moment', function($scope,$http,$controller,$compile,$parse,moment) {   
     
 
     //Importation des controllers
     $controller('interaction',{$scope: $scope}); 
-
 
 
     /* This fonction is used in order to load json file to initialize the localStorage.
@@ -33,9 +32,15 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
         })
     }
 
+
+
+
     window.onresize = function(){
         window.screen.width > 500 ? $scope.$apply(function(){ $scope.mobileDesign = false }) : $scope.$apply(function(){$scope.mobileDesign = true} );
     }
+
+
+
 
     $scope.initComment = async function (){
         if(window.localStorage.length === 0){
@@ -93,9 +98,15 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
 
             //Generat HTML
             dataJSON.data.comments.forEach(function(comment){
+
+                //Define dynamically track the time since the comment was posted
+                var dataCurrent = moment(comment.createdAt, "DD.MM.YYYY HH:mm:ss");
+                var model = $parse("date"+comment.id)
+                model.assign($scope,dataCurrent)
+
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
-                bodyHTML = bodyHTML + ` <div class="mt-3"> 
+                bodyHTML = bodyHTML + ` <div class="mt-3" > 
                                             <div class="row bg-white rounded-1 p-3" id="`+comment.id+`">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
@@ -106,7 +117,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                             `+comment.user.username+`
                                                         </div>
                                                         <div class="col-5 col-sm-5 d-flex justify-content-end">
-                                                            `+moment(comment.createdAt, "DD.MM.YYYY HH:mm:ss").fromNow()+`
+                                                            <span am-time-ago="date`+comment.id+`" ng-model="date`+comment.id+`" ></span>
                                                         </div>
                                                         <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
                                                             
@@ -165,6 +176,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                     </div>
                                                 </div>
                                             </div>`
+
                 if(comment.replies.length != 0){
                     bodyHTML = bodyHTML + ` <div class="row mt-5">
                                                 <!-- Start under comment -->
@@ -177,6 +189,12 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                     comment.replies.forEach(function(underComment){
                         var authorizationCurrentUser = ($scope.currentUser.username == underComment.user.username ? true : false)
                         $scope.idMax = underComment.id > $scope.idMax ? underComment.id : $scope.idMax ; 
+                        
+                        //Define dynamically track the time since the reply was posted
+                        var dataCurrent = moment(underComment.createdAt, "DD.MM.YYYY HH:mm:ss");
+                        var model = $parse("date"+underComment.id)
+                        model.assign($scope,dataCurrent)
+
                         bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`">
                                                     <div class="col-sm-8 col-md-9 col-lg-10 col-xl-10 order-sm-1">
                                                         <div class="row d-flex align-items-center"><div class="col-3 col-sm-3 col-md-3">
@@ -186,7 +204,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', function($sc
                                                             `+underComment.user.username+`
                                                         </div>
                                                         <div class="col-4 col-sm-4 col-md-5 d-flex justify-content-end">
-                                                            `+moment(underComment.createdAt, "DD.MM.YYYY HH:mm:ss").fromNow()+`
+                                                            <span am-time-ago="date`+underComment.id+`" ng-model="date`+underComment.id+`" ></span>
                                                         </div>
                                                         <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
                                                             
