@@ -3,8 +3,6 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
-
-
     $scope.askReplyView = function($e,$boolTypeReply){
         if($boolTypeReply){
             var html = $compile($scope.commentReply)($scope);
@@ -23,6 +21,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
         $scope.autorisationReplyView = true;
         $scope.contentComment = "";
     };
+
 
 
 
@@ -61,25 +60,82 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
+   
+   
     $scope.deleteReplyview = function(){
         $scope.initComment()
     }
 
 
 
-    $scope.editComment = function($e){
+
+
+    $scope.askEditComment = function($e){
         var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id))
-        console.log(id)
         
-        // if($scope.mobileDesign){
-        //     $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText : $e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].innerText)
-        //     console.log($scope.replyingTo)
-        // }else{
-        //     $scope.replyingTo = ($e.target.tagName == "IMG" ? $e.target.parentElement.parentElement.parentElement.children[1].innerText : $e.target.parentElement.parentElement.children[1].innerText)
+        var html = document.getElementById("text"+id)
+        html.removeChild(html.children[0])
+        $scope.autorisationEditView = true;
+
+
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+        for(let commentNumber in dataJSON.data.comments){
+            if(dataJSON.data.comments[commentNumber].id == id){
+                $scope.contentEditContent = dataJSON.data.comments[commentNumber].content
+                break
+            }
+            if(dataJSON.data.comments[commentNumber].replies.length != 0){
+                for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
+                    if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
+                        $scope.contentEditContent = dataJSON.data.comments[commentNumber].replies[underCommentNumber].content
+                        break
+                    }   
+                }
+            }
+        }
             
-        //     console.log($scope.replyingTo)
-        // }
+        //Gerated html code for update part
+        var htmlPART1 = `<textarea class="w-100 fs-6 p-1" ng-model="contentEditContent"></textarea>`
+        var htmlPART1 = $compile(htmlPART1)($scope)
+        angular.element(html).append(htmlPART1);
+
+
+        var htmlPART2 = ` <div class="col-12 col-sm-12 col-md-12 col-lg-12 my-2 d-flex justify-content-end">
+                            <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="submitEditComment($event)">Update</button>
+                          </div>`
+        var htmlPART2 = $compile(htmlPART2)($scope)
+        angular.element(html).after(htmlPART2);    
     }
+
+
+
+
+
+    $scope.submitEditComment = function($e){
+        var id = parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id)
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+        for(let commentNumber in dataJSON.data.comments){
+            if(dataJSON.data.comments[commentNumber].id == id){
+                dataJSON.data.comments[commentNumber].content = $scope.contentEditContent
+                break
+            }
+            if(dataJSON.data.comments[commentNumber].replies.length != 0){
+                for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
+                    if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
+                        dataJSON.data.comments[commentNumber].replies[underCommentNumber].content = $scope.contentEditContent
+                        break
+                    }   
+                }
+            }
+        }
+        //Update LocalStorage
+        $scope.autorisationEditView = false;
+        localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
+        $scope.initComment()
+    }
+
+
+
 
 
     $scope.deleteComment = function($e){

@@ -94,6 +94,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         </div>`
             $scope.idMax = 0
             $scope.autorisationReplyView = false
+            $scope.autorisationEditView = false;
+
             window.screen.width > 500 ? $scope.mobileDesign = false : $scope.mobileDesign = true
 
             //Generat HTML
@@ -126,18 +128,18 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                     <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Dell
                                                                 </button>
-                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
+                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                     <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Edit
                                                                 </button>`
                                                                 : 
-                                                                `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
+                                                                `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                     <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Reply
                                                                 </button>`)
 
                                                         +`</div>
-                                                        <div class="col-12 mt-1">
+                                                        <div class="col-12 mt-1" id="text`+comment.id+`">
                                                             <p class="w-100 fs-6">`+comment.content+`</p>
                                                         </div>
                                                     </div>
@@ -162,12 +164,12 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
                                                             : 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
@@ -213,21 +215,21 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 
                                                         +`</div>
-                                                        <div class="col-12 mt-1">
-                                                            <p class="w-100">
+                                                        <div class="col-12 mt-1" id="text`+underComment.id+`">
+                                                            <p class="w-100 fs-6">
                                                                 <strong class="text-moderate-blue">@`+underComment.replyingTo+`</strong> `+underComment.content+`
                                                             </p>
                                                         </div> 
@@ -254,14 +256,14 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="editComment($event)" ng-disabled="autorisationReplyView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
