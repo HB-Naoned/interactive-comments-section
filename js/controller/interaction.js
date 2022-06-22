@@ -138,21 +138,30 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
 
 
 
-    $scope.deleteComment = function($e){
-        var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id)) 
-        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+    $scope.deleteCommentLocation = function($e){
+        $scope.tempoLocation = $e
+        console.log($scope.tempoLocation)
+    }
 
-        for(let commentNumber in dataJSON.data.comments){
-            if(dataJSON.data.comments[commentNumber].id == id){
-                delete dataJSON.data.comments.splice(commentNumber,1)
-                break
-            }
-            if(dataJSON.data.comments[commentNumber].replies.length != 0){
-                for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
-                    if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
-                        delete dataJSON.data.comments[commentNumber].replies.splice(underCommentNumber,1)
-                        break
-                    }   
+
+    $scope.deleteCommentConfirme = function(boolToDelete){
+        var id = ($scope.tempoLocation.target.tagName == "IMG" ? parseInt($scope.tempoLocation.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($scope.tempoLocation.target.parentElement.parentElement.parentElement.parentElement.id)) 
+        let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
+        console.log(id)
+
+        if(boolToDelete){
+            for(let commentNumber in dataJSON.data.comments){
+                if(dataJSON.data.comments[commentNumber].id == id){
+                    delete dataJSON.data.comments.splice(commentNumber,1)
+                    break
+                }
+                if(dataJSON.data.comments[commentNumber].replies.length != 0){
+                    for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
+                        if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
+                            delete dataJSON.data.comments[commentNumber].replies.splice(underCommentNumber,1)
+                            break
+                        }   
+                    }
                 }
             }
         }

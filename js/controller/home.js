@@ -94,8 +94,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         </div>`
             $scope.idMax = 0
             $scope.autorisationReplyView = false
-            $scope.autorisationEditView = false;
-
+            $scope.autorisationEditView = false
             window.screen.width > 500 ? $scope.mobileDesign = false : $scope.mobileDesign = true
 
             //Generat HTML
@@ -124,10 +123,11 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
                                                             
                                                             (authorizationCurrentUser ? 
-                                                                `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteComment($event)">
+                                                                `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                     <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Dell
                                                                 </button>
+                                                                
                                                                 <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
                                                                     <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Edit
@@ -160,7 +160,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">`+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteComment($event)">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
@@ -211,7 +211,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteComment($event)">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
@@ -252,7 +252,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         `+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteComment($event)">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
@@ -272,11 +272,30 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>` ; 
+                                            </div>`
                     })  
-                    bodyHTML = bodyHTML + "</div></div>";
+                    bodyHTML = bodyHTML + `</div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="dellModal" tabindex="-1" aria-labelledby="dellModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="dellModalLabel">Delete Comment</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete this comment ? This will remove the comment and can't be undone.
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-evenly">
+                                                            <button type="button" class="btn btn-secondary fw-bold" ng-click="deleteCommentConfirme(false)" data-bs-dismiss="modal">NO, CANCEL</button>
+                                                            <button type="button" class="btn btn-soft-red fw-bold" ng-click="deleteCommentConfirme(true)">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>`
                 }
-                bodyHTML = bodyHTML + "</div>";
+                bodyHTML = bodyHTML + "</div>"
             })
         }
         bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4">
@@ -290,8 +309,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentMainComment == null">Send</button>
                                     </div>
                                 </div>`
-        bodyHTML = $compile(bodyHTML)($scope);
-        angular.element(document.getElementById("app")).append(bodyHTML);
+        bodyHTML = $compile(bodyHTML)($scope)
+        angular.element(document.getElementById("app")).append(bodyHTML)
     } 
 
         
