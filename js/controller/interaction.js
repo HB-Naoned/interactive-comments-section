@@ -165,10 +165,11 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                 }
             }
         }
-
+        console.log("ici")
         //Update LocalStorage
         localStorage.setItem("dataJSON",JSON.stringify(dataJSON))
         $scope.initComment()
+        console.log("ici")
     }
 
 

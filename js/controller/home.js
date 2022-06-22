@@ -147,14 +147,14 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-4 col-md-2 col-lg-2 col-xl-2 order-sm-0">
                                                     <div class="row">
                                                         <div class="col-5 col-sm-12 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)">
-                                                                <img ng-src="./images/icon-plus.svg" alt="plus">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+!authorizationCurrentUser+`" >
+                                                                <img ng-src="./images/icon-plus.svg" ng-disabled="`+!authorizationCurrentUser+`" alt="plus">
                                                             </button>
                                                             <div class="text-moderate-blue fw-bold ">
                                                                 `+comment.score+`
                                                             </div>
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)">
-                                                                <img src="./images/icon-minus.svg" alt="minus">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)"ng-disabled="`+!authorizationCurrentUser+`" >
+                                                                <img src="./images/icon-minus.svg" ng-disabled="`+!authorizationCurrentUser+`" alt="minus">
                                                             </button> 
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">`+
@@ -288,7 +288,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-evenly">
                                                             <button type="button" class="btn btn-secondary fw-bold" ng-click="deleteCommentConfirme(false)" data-bs-dismiss="modal">NO, CANCEL</button>
-                                                            <button type="button" class="btn btn-soft-red fw-bold" ng-click="deleteCommentConfirme(true)">Save changes</button>
+                                                            <button type="button" class="btn btn-soft-red fw-bold" ng-click="deleteCommentConfirme(true)" data-bs-dismiss="modal">Save changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
