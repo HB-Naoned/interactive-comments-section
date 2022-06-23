@@ -298,7 +298,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 bodyHTML = bodyHTML + "</div>"
             })
         }
-        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4">
+        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="newComment">
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
                                         <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd">
                                     </div>
