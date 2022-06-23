@@ -69,7 +69,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
             $scope.currentUser = dataJSON.data.currentUser
             $scope.commentReply =`  <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="commentReplu">
                                         <div class="col-3 col-sm-2 col-lg-1">
-                                            <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="plus">
+                                            <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="profilCurrentUserReply">
                                         </div>
                                         <div class="col-5 col-sm-7 col-lg-9">
                                             <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
@@ -82,7 +82,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
 
             $scope.commentUnderReply =` <div class="row d-flex bg-white rounded-3 mt-1 mb-3 p-3 px-4" role="underCommentReply">
                                             <div class="col-3 col-sm-2 col-lg-1">
-                                                <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-50" alt="plus">
+                                                <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-50" alt="profilCurrentUserUnderReply">
                                             </div>
                                             <div class="col-5 col-sm-7 col-lg-9">
                                                 <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
@@ -108,11 +108,11 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
                 bodyHTML = bodyHTML + ` <div class="mt-3"> 
-                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="comment`+comment.id+`">
+                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
                                                         <div class="col-2 col-sm-3">
-                                                            <img src="`+comment.user.image.png+`" class="img-fluid" alt="user">
+                                                            <img src="`+comment.user.image.png+`" class="img-fluid" alt="userProfileComment`+comment.id+`">
                                                         </div>
                                                         <div class="col-5 col-sm-4 fw-bold">
                                                             `+comment.user.username+`
@@ -124,17 +124,17 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             
                                                             (authorizationCurrentUser ? 
                                                                 `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
-                                                                    <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                    <img src="./images/icon-delete.svg" alt="commentDell`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Dell
                                                                 </button>
                                                                 
                                                                 <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                    <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                    <img src="./images/icon-edit.svg" alt="commentEdit`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Edit
                                                                 </button>`
                                                                 : 
                                                                 `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                    <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                    <img src="./images/icon-reply.svg" alt="commentReply`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Reply
                                                                 </button>`)
 
@@ -148,29 +148,29 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                     <div class="row">
                                                         <div class="col-5 col-sm-12 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
                                                             <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'up'" >
-                                                                <img ng-src="./images/icon-plus.svg" alt="plus">
+                                                                <img ng-src="./images/icon-plus.svg" alt="commentPlus`+comment.id+`">
                                                             </button>
                                                             <div class="text-moderate-blue fw-bold ">
                                                                 `+comment.score+`
                                                             </div>
                                                             <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)"ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'down'" >
-                                                                <img src="./images/icon-minus.svg" alt="minus">
+                                                                <img src="./images/icon-minus.svg" alt="commentMinus`+comment.id+`">
                                                             </button> 
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">`+
                                                             
                                                         (authorizationCurrentUser ? 
                                                             `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
-                                                                <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-delete.svg" alt="commentDell`+comment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
                                                             <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-edit.svg" alt="commentEdit`+comment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
                                                             : 
                                                             `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-reply.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-reply.svg" alt="commentReply`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 
@@ -197,10 +197,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                         var model = $parse("date"+underComment.id)
                         model.assign($scope,dataCurrent)
 
-                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`">
+                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="article">
                                                     <div class="col-sm-8 col-md-9 col-lg-10 col-xl-10 order-sm-1">
                                                         <div class="row d-flex align-items-center"><div class="col-3 col-sm-3 col-md-3">
-                                                            <img src="`+underComment.user.image.png+`" class="img-fluid" alt="plus">
+                                                            <img src="`+underComment.user.image.png+`" class="img-fluid" alt="userProfileUnderComment`+underComment.id+`">
                                                         </div>
                                                         <div class="col-5 col-sm-5 col-md-4 fw-bold">
                                                             `+underComment.user.username+`
@@ -212,18 +212,18 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             
                                                         (authorizationCurrentUser ? 
                                                             `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
-                                                                <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-delete.svg" alt="underCommentDell`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
                                                             <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-edit.svg" alt="underCommentEdit`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
                                                             `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-reply.svg" alt="underCommentReply`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 
@@ -239,13 +239,13 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                     <div class="row row-cols-sm-1">
                                                         <div class="col-5 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
                                                             <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'up'">
-                                                                <img src="./images/icon-plus.svg" alt="plus">
+                                                                <img src="./images/icon-plus.svg" alt="underCommentPlus`+underComment.id+`">
                                                             </button> 
                                                             <div class="text-moderate-blue fw-bold">
                                                                 `+underComment.score+`
                                                             </div>
                                                             <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'down'">
-                                                                <img src="./images/icon-minus.svg" alt="minus">
+                                                                <img src="./images/icon-minus.svg" alt="underCommentMinus`+underComment.id+`">
                                                             </button>
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">
@@ -253,18 +253,18 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             
                                                         (authorizationCurrentUser ? 
                                                             `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
-                                                                <img src="./images/icon-delete.svg" alt="dell" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-delete.svg" alt="underCommentDell`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
                                                             <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-edit.svg" alt="edit" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-edit.svg" alt="underCommentEdit`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
                                                             `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
-                                                                <img src="./images/icon-reply.svg" alt="reply" class="d-inline-block align-items-center mx-2 mb-1">
+                                                                <img src="./images/icon-reply.svg" alt="underCommentReply`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
 
@@ -298,9 +298,9 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 bodyHTML = bodyHTML + "</div>"
             })
         }
-        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4">
+        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="newComment">
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="plus">
+                                        <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd`+comment.id+`">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
                                         <textarea class="h-100 w-100" ng-model="contentMainComment"></textarea>
