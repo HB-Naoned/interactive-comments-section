@@ -108,7 +108,6 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
                 bodyHTML = bodyHTML + ` <div class="mt-3"> 
-                                            <h1></h1>
                                             <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="article">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
@@ -299,7 +298,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 bodyHTML = bodyHTML + "</div>"
             })
         }
-        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="newComment">
+        bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="search">
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
                                         <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd">
                                     </div>
