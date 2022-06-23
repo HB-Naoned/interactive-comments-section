@@ -67,7 +67,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         //Case if there is comment
         if(dataJSON.data.comments.length != 0){
             $scope.currentUser = dataJSON.data.currentUser
-            $scope.commentReply =`  <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4">
+            $scope.commentReply =`  <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="commentReplu">
                                         <div class="col-3 col-sm-2 col-lg-1">
                                             <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="plus">
                                         </div>
@@ -80,7 +80,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         </div>
                                     </div>`
 
-            $scope.commentUnderReply =` <div class="row d-flex bg-white rounded-3 mt-1 mb-3 p-3 px-4">
+            $scope.commentUnderReply =` <div class="row d-flex bg-white rounded-3 mt-1 mb-3 p-3 px-4" role="underCommentReply">
                                             <div class="col-3 col-sm-2 col-lg-1">
                                                 <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-50" alt="plus">
                                             </div>
@@ -108,7 +108,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
                 bodyHTML = bodyHTML + ` <div class="mt-3"> 
-                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`">
+                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="comment`+comment.id+`">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
                                                         <div class="col-2 col-sm-3">
