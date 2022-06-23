@@ -300,7 +300,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         }
         bodyHTML = bodyHTML + ` <div class="row d-flex bg-white rounded-3 mt-4 p-3 px-4" role="newComment">
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd`+comment.id+`">
+                                        <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
                                         <textarea class="h-100 w-100" ng-model="contentMainComment"></textarea>
