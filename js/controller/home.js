@@ -112,7 +112,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
                                                         <div class="col-2 col-sm-3">
-                                                            <img src="`+comment.user.image.png+`" class="img-fluid" alt="plus">
+                                                            <img src="`+comment.user.image.png+`" class="img-fluid" alt="user">
                                                         </div>
                                                         <div class="col-5 col-sm-4 fw-bold">
                                                             `+comment.user.username+`
@@ -147,14 +147,14 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-4 col-md-2 col-lg-2 col-xl-2 order-sm-0">
                                                     <div class="row">
                                                         <div class="col-5 col-sm-12 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+!authorizationCurrentUser+`" >
-                                                                <img ng-src="./images/icon-plus.svg" ng-disabled="`+!authorizationCurrentUser+`" alt="plus">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'up'" >
+                                                                <img ng-src="./images/icon-plus.svg" alt="plus">
                                                             </button>
                                                             <div class="text-moderate-blue fw-bold ">
                                                                 `+comment.score+`
                                                             </div>
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)"ng-disabled="`+!authorizationCurrentUser+`" >
-                                                                <img src="./images/icon-minus.svg" ng-disabled="`+!authorizationCurrentUser+`" alt="minus">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)"ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'down'" >
+                                                                <img src="./images/icon-minus.svg" alt="minus">
                                                             </button> 
                                                         </div>
                                                         <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">`+
@@ -238,13 +238,13 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-4 col-md-3 col-lg-2 col-xl-2 order-sm-0">
                                                     <div class="row row-cols-sm-1">
                                                         <div class="col-5 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'up'">
                                                                 <img src="./images/icon-plus.svg" alt="plus">
                                                             </button> 
                                                             <div class="text-moderate-blue fw-bold">
                                                                 `+underComment.score+`
                                                             </div>
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'down'">
                                                                 <img src="./images/icon-minus.svg" alt="minus">
                                                             </button>
                                                         </div>

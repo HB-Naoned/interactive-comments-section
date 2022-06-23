@@ -43,6 +43,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                     "content": $scope.contentComment,
                     "createdAt" : moment().format("DD.MM.YYYY HH:mm:ss"),
                     "score": 0,
+                    "scoreModified": "none",
                     "replyingTo": $scope.replyingTo,
                     "user": $scope.currentUser
                 }
@@ -182,6 +183,7 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
                         "content": $scope.contentMainComment,
                         "createdAt": moment().format("DD.MM.YYYY HH:mm:ss"),
                         "score": 0,
+                        "scoreModified": "none",
                         "user": {
                             "image": { 
                                 "png": "./images/avatars/image-juliusomo.png",
@@ -207,18 +209,53 @@ app.controller('interaction', ['$scope','$compile', function($scope,$compile) {
     $scope.modifyScore = function($e,$boolTypeModify){
         var score = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.children[1].innerText) : parseInt($e.target.parentElement.children[1].innerText))  
         var id = ($e.target.tagName == "IMG" ? parseInt($e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id) : parseInt($e.target.parentElement.parentElement.parentElement.parentElement.id)) 
-        score = $boolTypeModify ? score+1 : score-1
 
         let dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         for(let commentNumber in dataJSON.data.comments){
             if(dataJSON.data.comments[commentNumber].id == id){
-                dataJSON.data.comments[commentNumber].score = score
+                if($boolTypeModify){
+                    score = score + 1 
+                    console.log("true" , dataJSON.data.comments[commentNumber].scoreModified)
+                    switch (dataJSON.data.comments[commentNumber].scoreModified){
+                        case 'none': dataJSON.data.comments[commentNumber].scoreModified = 'up' ; break;
+                        case 'down': dataJSON.data.comments[commentNumber].scoreModified = 'none' ; break;
+                        default: 
+                    }
+                    dataJSON.data.comments[commentNumber].score = score
+                }else{
+                    score = score - 1 
+                    console.log("false" , dataJSON.data.comments[commentNumber].scoreModified)
+                    switch (dataJSON.data.comments[commentNumber].scoreModified){
+                        case 'none':  dataJSON.data.comments[commentNumber].scoreModified = 'down' ; break;
+                        case 'up': dataJSON.data.comments[commentNumber].scoreModified = 'none' ; break;
+                        default: 
+                    }
+                    dataJSON.data.comments[commentNumber].score = score
+                }
                 break
             }
             if(dataJSON.data.comments[commentNumber].replies.length != 0){
                 for(let underCommentNumber in dataJSON.data.comments[commentNumber].replies){
                     if(dataJSON.data.comments[commentNumber].replies[underCommentNumber].id == id){
-                        dataJSON.data.comments[commentNumber].replies[underCommentNumber].score = score
+                        if($boolTypeModify){
+                            score = score + 1 
+                            console.log("true" , dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified)
+                            switch (dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified){
+                                case 'none': dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified = 'up' ; break;
+                                case 'down': dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified = 'none' ; break;
+                                default: 
+                            }
+                            dataJSON.data.comments[commentNumber].replies[underCommentNumber].score = score
+                        }else{
+                            score = score - 1 
+                            console.log("false" , dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified)
+                            switch (dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified){
+                                case 'none':  dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified = 'down' ; break;
+                                case 'up': dataJSON.data.comments[commentNumber].replies[underCommentNumber].scoreModified = 'none' ; break;
+                                default: 
+                            }
+                            dataJSON.data.comments[commentNumber].replies[underCommentNumber].score = score
+                        }
                         break
                     }   
                 }
