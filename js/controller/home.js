@@ -108,7 +108,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
                 bodyHTML = bodyHTML + ` <div class="mt-3"> 
-                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`">
+                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
                                                         <div class="col-2 col-sm-3">
@@ -197,7 +197,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                         var model = $parse("date"+underComment.id)
                         model.assign($scope,dataCurrent)
 
-                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`">
+                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="article">
                                                     <div class="col-sm-8 col-md-9 col-lg-10 col-xl-10 order-sm-1">
                                                         <div class="row d-flex align-items-center"><div class="col-3 col-sm-3 col-md-3">
                                                             <img src="`+underComment.user.image.png+`" class="img-fluid" alt="userProfileUnderComment`+underComment.id+`">
