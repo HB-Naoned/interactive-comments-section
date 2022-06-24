@@ -49,7 +49,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         }
         dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         console.log(dataJSON)
-        let bodyHTML = "<main>"
+        let bodyHTML = `<header>
+                            <h1 class="text-n-light-gray" data-ng-show="false">header</h1>
+                        </header>
+                        <main>` 
 
         //Empty content of Body 
         let rst = document.getElementById("app")
