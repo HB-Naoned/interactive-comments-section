@@ -107,7 +107,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
 
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
-                bodyHTML = bodyHTML + ` <div class="mt-3"> 
+                bodyHTML = bodyHTML + ` <main>
+                                         <div class="mt-3"> 
                                             <div class="row bg-white rounded-1 p-3" data-ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
@@ -308,7 +309,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
                                         <button type="button" class="btn btn-moderate-blue fw-bold" data-ng-click="newComment($event)" data-ng-disabled="contentMainComment == null">Send</button>
                                     </div>
-                                </div>`
+                                </div>
+                            </main>`
         bodyHTML = $compile(bodyHTML)($scope)
         angular.element(document.getElementById("app")).append(bodyHTML)
     } 
