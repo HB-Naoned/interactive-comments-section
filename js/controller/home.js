@@ -309,7 +309,19 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         <button type="button" class="btn btn-moderate-blue fw-bold" data-ng-click="newComment($event)" data-ng-disabled="contentMainComment == null">Send</button>
                                     </div>
                                 </div>
-                            </main>`
+                            </main>
+                            
+                            <!-- Footer -->
+                            <footer>
+                                <div class="row row-cols-auto my-1 justify-content-center">
+                                    <div class="">
+                                        Challenge by <a href="https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9" target="_blank">Frontend Mentor</a>.
+                                    </div>
+                                    <div class="">
+                                        Coded by <a href="https://github.com/HB-Naoned/interactive-comments-section">GCO44</a>.
+                                    </div>
+                                </div>
+                           </footer>`
         bodyHTML = $compile(bodyHTML)($scope)
         angular.element(document.getElementById("app")).append(bodyHTML)
     } 
