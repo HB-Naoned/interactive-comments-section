@@ -50,7 +50,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         console.log(dataJSON)
         let bodyHTML = `<header>
-                            <h1 class="">header</h1>
+                            <h1 class="" ng-show="false">header</h1>
                         </header>
                         <main>` 
 
@@ -306,7 +306,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
-                                        <textarea class="h-100 w-100" data-ng-model="contentMainComment"></textarea>
+                                        <textarea class="h-100 w-100" data-ng-model="contentMainComment" aria-label="toADD"></textarea>
                                     </div>
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
                                         <button type="button" class="btn btn-moderate-blue fw-bold" data-ng-click="newComment($event)" data-ng-disabled="contentMainComment == null">Send</button>
