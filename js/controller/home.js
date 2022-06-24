@@ -50,7 +50,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         console.log(dataJSON)
         let bodyHTML = `<header>
-                            <h1 class="text-n-light-gray" data-ng-show="false">header</h1>
+                            <h1 class="">header</h1>
                         </header>
                         <main>` 
 
