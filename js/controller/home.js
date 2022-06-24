@@ -118,7 +118,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             `+comment.user.username+`
                                                         </div>
                                                         <div class="col-5 col-sm-5 d-flex justify-content-end">
-                                                            <span am-time-ago="date`+comment.id+`" data-ng-model="date`+comment.id+`" ></span>
+                                                            <span data-
+                                                            data-am-time-ago="date`+comment.id+`" data-ng-model="date`+comment.id+`" ></span>
                                                         </div>
                                                         <div class="col-12 d-flex justify-content-end" data-ng-show="!mobileDesign">`+
                                                             
