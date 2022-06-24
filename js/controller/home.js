@@ -72,11 +72,11 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                             <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="profilCurrentUserReply">
                                         </div>
                                         <div class="col-5 col-sm-7 col-lg-9">
-                                            <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
+                                            <textarea class="h-100 w-100" data-ng-model="contentComment"></textarea>
                                         </div>
                                         <div class="row col-4 col-sm-3 col-lg-2 d-flex justify-content-evenly">
-                                            <button type="button" class="btn btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
-                                            <button type="button" class="btn btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,true)" ng-disabled="contentComment == ''">Reply</button>
+                                            <button type="button" class="btn btn-soft-red fw-bold my-1" data-ng-click="deleteReplyview()">Dell</button> 
+                                            <button type="button" class="btn btn-moderate-blue fw-bold my-1" data-ng-click="submitReplyView($event,true)" data-ng-disabled="contentComment == ''">Reply</button>
                                         </div>
                                     </div>`
 
@@ -85,11 +85,11 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-50" alt="profilCurrentUserUnderReply">
                                             </div>
                                             <div class="col-5 col-sm-7 col-lg-9">
-                                                <textarea class="h-100 w-100" ng-model="contentComment"></textarea>
+                                                <textarea class="h-100 w-100" data-ng-model="contentComment"></textarea>
                                             </div>
                                             <div class="row col-4 col-sm-3 col-lg-2">
-                                                <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" ng-click="deleteReplyview()">Dell</button> 
-                                                <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" ng-click="submitReplyView($event,false)" ng-disabled="contentComment =='' ">Reply</button> 
+                                                <button type="button" class="btn btn-sm btn-soft-red fw-bold my-1" data-ng-click="deleteReplyview()">Dell</button> 
+                                                <button type="button" class="btn btn-sm btn-moderate-blue fw-bold my-1" data-ng-click="submitReplyView($event,false)" data-ng-disabled="contentComment =='' ">Reply</button> 
                                             </div>
                                         </div>`
             $scope.idMax = 0
@@ -108,7 +108,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
                 bodyHTML = bodyHTML + ` <div class="mt-3"> 
-                                            <div class="row bg-white rounded-1 p-3" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
+                                            <div class="row bg-white rounded-1 p-3" data-ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
                                                         <div class="col-2 col-sm-3">
@@ -118,22 +118,22 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             `+comment.user.username+`
                                                         </div>
                                                         <div class="col-5 col-sm-5 d-flex justify-content-end">
-                                                            <span am-time-ago="date`+comment.id+`" ng-model="date`+comment.id+`" ></span>
+                                                            <span am-time-ago="date`+comment.id+`" data-ng-model="date`+comment.id+`" ></span>
                                                         </div>
-                                                        <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
+                                                        <div class="col-12 d-flex justify-content-end" data-ng-show="!mobileDesign">`+
                                                             
                                                             (authorizationCurrentUser ? 
-                                                                `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
+                                                                `<button type="button" class="btn btn-white fw-bold text-soft-red" data-ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                     <img src="./images/icon-delete.svg" alt="commentDell`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Dell
                                                                 </button>
                                                                 
-                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                                <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askEditComment($event)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                     <img src="./images/icon-edit.svg" alt="commentEdit`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Edit
                                                                 </button>`
                                                                 : 
-                                                                `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                                `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askReplyView($event,true)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                     <img src="./images/icon-reply.svg" alt="commentReply`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                     Reply
                                                                 </button>`)
@@ -147,29 +147,29 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-4 col-md-2 col-lg-2 col-xl-2 order-sm-0">
                                                     <div class="row">
                                                         <div class="col-5 col-sm-12 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'up'" >
-                                                                <img ng-src="./images/icon-plus.svg" alt="commentPlus`+comment.id+`">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" data-ng-click="modifyScore($event,true)" data-ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'up'" >
+                                                                <img data-ng-src="./images/icon-plus.svg" alt="commentPlus`+comment.id+`">
                                                             </button>
                                                             <div class="text-moderate-blue fw-bold ">
                                                                 `+comment.score+`
                                                             </div>
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)"ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'down'" >
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" data-ng-click="modifyScore($event,false)" data-ng-disabled="`+authorizationCurrentUser+` || '`+comment.scoreModified+`' == 'down'" >
                                                                 <img src="./images/icon-minus.svg" alt="commentMinus`+comment.id+`">
                                                             </button> 
                                                         </div>
-                                                        <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">`+
+                                                        <div class="col-7 d-flex justify-content-end" data-ng-show="mobileDesign">`+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" data-ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="commentDell`+comment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askEditComment($event)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="commentEdit`+comment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
                                                             : 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,true)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askReplyView($event,true)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="commentReply`+comment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
@@ -197,7 +197,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                         var model = $parse("date"+underComment.id)
                         model.assign($scope,dataCurrent)
 
-                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="article">
+                        bodyHTML = bodyHTML + `<div class="row bg-white rounded-3 p-3 mb-3" id="`+underComment.id+`" data-ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="article">
                                                     <div class="col-sm-8 col-md-9 col-lg-10 col-xl-10 order-sm-1">
                                                         <div class="row d-flex align-items-center"><div class="col-3 col-sm-3 col-md-3">
                                                             <img src="`+underComment.user.image.png+`" class="img-fluid" alt="userProfileUnderComment`+underComment.id+`">
@@ -206,23 +206,23 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             `+underComment.user.username+`
                                                         </div>
                                                         <div class="col-4 col-sm-4 col-md-5 d-flex justify-content-end">
-                                                            <span am-time-ago="date`+underComment.id+`" ng-model="date`+underComment.id+`" ></span>
+                                                            <span am-time-ago="date`+underComment.id+`" data-ng-model="date`+underComment.id+`" ></span>
                                                         </div>
-                                                        <div class="col-12 d-flex justify-content-end" ng-show="!mobileDesign">`+
+                                                        <div class="col-12 d-flex justify-content-end" data-ng-show="!mobileDesign">`+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" data-ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="underCommentDell`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askEditComment($event)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="underCommentEdit`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askReplyView($event,false)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="underCommentReply`+underComment.id+`" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
@@ -238,32 +238,32 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                 <div class="col-sm-4 col-md-3 col-lg-2 col-xl-2 order-sm-0">
                                                     <div class="row row-cols-sm-1">
                                                         <div class="col-5 bg-very-light-gray rounded-1 d-flex justify-content-evenly align-items-center p-1">
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,true)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'up'">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" data-ng-click="modifyScore($event,true)" data-ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'up'">
                                                                 <img src="./images/icon-plus.svg" alt="underCommentPlus`+underComment.id+`">
                                                             </button> 
                                                             <div class="text-moderate-blue fw-bold">
                                                                 `+underComment.score+`
                                                             </div>
-                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" ng-click="modifyScore($event,false)" ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'down'">
+                                                            <button type="button" class="btn btn-sm btn-very-light-gray d-flex align-items-center" data-ng-click="modifyScore($event,false)" data-ng-disabled="`+authorizationCurrentUser+` || '`+underComment.scoreModified+`' == 'down'">
                                                                 <img src="./images/icon-minus.svg" alt="underCommentMinus`+underComment.id+`">
                                                             </button>
                                                         </div>
-                                                        <div class="col-7 d-flex justify-content-end" ng-show="mobileDesign">
+                                                        <div class="col-7 d-flex justify-content-end" data-ng-show="mobileDesign">
                                                         `+
                                                             
                                                         (authorizationCurrentUser ? 
-                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
+                                                            `<button type="button" class="btn btn-white fw-bold text-soft-red" data-ng-click="deleteCommentLocation($event)" data-bs-toggle="modal" data-bs-target="#dellModal">
                                                                 <img src="./images/icon-delete.svg" alt="underCommentDell`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Dell
                                                             </button>
-                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askEditComment($event)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            <button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askEditComment($event)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-edit.svg" alt="underCommentEdit`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Edit
                                                             </button>`
 
                                                             :
 
-                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" ng-click="askReplyView($event,false)" ng-disabled="autorisationReplyView || autorisationEditView">
+                                                            `<button type="button" class="btn btn-white fw-bold text-moderate-blue mx-1" data-ng-click="askReplyView($event,false)" data-ng-disabled="autorisationReplyView || autorisationEditView">
                                                                 <img src="./images/icon-reply.svg" alt="underCommentReply`+underComment.id+`V2" class="d-inline-block align-items-center mx-2 mb-1">
                                                                 Reply
                                                             </button>`)
@@ -287,8 +287,8 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                                             Are you sure you want to delete this comment ? This will remove the comment and can't be undone.
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-evenly">
-                                                            <button type="button" class="btn btn-secondary fw-bold" ng-click="deleteCommentConfirme(false)" data-bs-dismiss="modal">NO, CANCEL</button>
-                                                            <button type="button" class="btn btn-soft-red fw-bold" ng-click="deleteCommentConfirme(true)" data-bs-dismiss="modal">Save changes</button>
+                                                            <button type="button" class="btn btn-secondary fw-bold" data-ng-click="deleteCommentConfirme(false)" data-bs-dismiss="modal">NO, CANCEL</button>
+                                                            <button type="button" class="btn btn-soft-red fw-bold" data-ng-click="deleteCommentConfirme(true)" data-bs-dismiss="modal">Save changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -303,10 +303,10 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                                         <img src="`+$scope.currentUser.image.png+`" class="img-fluid w-60" alt="userProfileCommentToAdd">
                                     </div>
                                     <div class="col-6 col-sm-8 col-md-8 col-lg-10">
-                                        <textarea class="h-100 w-100" ng-model="contentMainComment"></textarea>
+                                        <textarea class="h-100 w-100" data-ng-model="contentMainComment"></textarea>
                                     </div>
                                     <div class="col-3 col-sm-2 col-md-2 col-lg-1">
-                                        <button type="button" class="btn btn-moderate-blue fw-bold" ng-click="newComment($event)" ng-disabled="contentMainComment == null">Send</button>
+                                        <button type="button" class="btn btn-moderate-blue fw-bold" data-ng-click="newComment($event)" data-ng-disabled="contentMainComment == null">Send</button>
                                     </div>
                                 </div>`
         bodyHTML = $compile(bodyHTML)($scope)
