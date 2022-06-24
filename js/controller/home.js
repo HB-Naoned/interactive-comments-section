@@ -54,6 +54,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
                         </header>
                         <main>` 
 
+                        
         //Empty content of Body 
         let rst = document.getElementById("app")
         let child = rst.lastChild 
