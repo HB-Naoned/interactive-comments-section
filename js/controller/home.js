@@ -49,7 +49,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
         }
         dataJSON = JSON.parse(localStorage.getItem("dataJSON"))
         console.log(dataJSON)
-        let bodyHTML = ""
+        let bodyHTML = "<main>"
 
         //Empty content of Body 
         let rst = document.getElementById("app")
@@ -107,8 +107,7 @@ app.controller("home", ['$scope','$http','$controller', '$compile', "$parse", 'm
 
                 $scope.idMax = comment.id > $scope.idMax ? comment.id : $scope.idMax ;
                 var authorizationCurrentUser = ($scope.currentUser.username == comment.user.username ? true : false)
-                bodyHTML = bodyHTML + ` <main>
-                                         <div class="mt-3"> 
+                bodyHTML = bodyHTML + `<div class="mt-3"> 
                                             <div class="row bg-white rounded-1 p-3" data-ng-class="`+authorizationCurrentUser+` ? 'border-moderate-blue' : ''" id="`+comment.id+`" role="main">
                                                 <div class="col-sm-8 col-md-10 col-lg-10 col-xl-10 order-sm-1">
                                                     <div class="row d-flex align-items-center">
